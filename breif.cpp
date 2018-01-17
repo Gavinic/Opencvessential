@@ -1,16 +1,15 @@
-#if 0
 #include<opencv2/core/core.hpp>
 #include<opencv2/highgui/highgui.hpp>
 #include<iostream>
 using namespace std;
 using namespace cv;
 
-#define IN_WIN "Orig. image"   //ºê¶¨ÒåÁËÏÔÊ¾ÊäÈëÍ¼Æ¬µÄ´°¿ÚÃû³Æ
-#define OUT_WIN "Image converted...(no saved)" //ºê¶¨ÒåÁËÏÔÊ¾Êä³öÍ¼Æ¬µÄ´°¿ÚÃû³Æ
-Mat in_img, out_img;            //¶¨ÒåÊäÈëÊä³öÍ¼ÏñµÄ¾ØÕó
+#define IN_WIN "Orig. image"   //å®å®šä¹‰äº†æ˜¾ç¤ºè¾“å…¥å›¾ç‰‡çš„çª—å£åç§°
+#define OUT_WIN "Image converted...(no saved)" //å®å®šä¹‰äº†æ˜¾ç¤ºè¾“å‡ºå›¾ç‰‡çš„çª—å£åç§°
+Mat in_img, out_img;            //å®šä¹‰è¾“å…¥è¾“å‡ºå›¾åƒçš„çŸ©é˜µ
 
 //callback function for contrast trackBar
-//¶¨ÒåÁËcreateTrackBarµÄ»Øµ÷º¯Êı£¬×÷ÓÃÊÇ¸Ä±äÍ¼ÏñµÄÁÁ¶È
+//å®šä¹‰äº†createTrackBarçš„å›è°ƒå‡½æ•°ï¼Œä½œç”¨æ˜¯æ”¹å˜å›¾åƒçš„äº®åº¦
 
 void updateContrast(int TBvalContrast,void *userData = 0)
 {
@@ -22,20 +21,19 @@ void updateContrast(int TBvalContrast,void *userData = 0)
 
 int main(int argc,char* argv[])
 {
-    int TBvalContrast = 50;//value of the TrackBar  ³õÊ¼»¯µÄÖµ
+    int TBvalContrast = 50;//value of the TrackBar  åˆå§‹åŒ–çš„å€¼
 
     //(omitted for simplicity)
-    in_img = imread("E:\\Testimage\\lena.bmp");  //ÕâÀïµÄin_img ÊÇÒ»¸öÈ«¾Ö±äÁ¿
-    in_img.copyTo(out_img);   //½«ÊäÈëÍ¼Ïñ¸´ÖÆ¸øÊä³öÍ¼Ïñ
-    namedWindow(IN_WIN);      //ÏÔÊ¾ÊäÈëÍ¼ÏñµÄ´°¿ÚÃû³Æ
-    moveWindow(IN_WIN, 0, 0); //½«´°¿ÚÒÆ¶¯µ½ÆÁÄ»µÄ×óÉÏ½Ç£¬±ÜÃâÖØµş
+    in_img = imread("E:\\Testimage\\lena.bmp");  //è¿™é‡Œçš„in_img æ˜¯ä¸€ä¸ªå…¨å±€å˜é‡
+    in_img.copyTo(out_img);   //å°†è¾“å…¥å›¾åƒå¤åˆ¶ç»™è¾“å‡ºå›¾åƒ
+    namedWindow(IN_WIN);      //æ˜¾ç¤ºè¾“å…¥å›¾åƒçš„çª—å£åç§°
+    moveWindow(IN_WIN, 0, 0); //å°†çª—å£ç§»åŠ¨åˆ°å±å¹•çš„å·¦ä¸Šè§’ï¼Œé¿å…é‡å 
     imshow(IN_WIN,in_img);
     namedWindow(OUT_WIN);
-    //createTrackbarµÄ²ÎÊı£¬
+    //createTrackbarçš„å‚æ•°ï¼Œ
     createTrackbar("Contrast", OUT_WIN, &TBvalContrast, 100, updateContrast);
     imshow(OUT_WIN,out_img);
     cout << "Press any Key to exit..." << endl;
     waitKey();
     return 0;
 }
-#endif 
